@@ -80,8 +80,43 @@ ruleTester.run('prefer-camel-case', rules['prefer-camel-case'], {
       ],
     },
     {
+      code:
+        'expect([1, 2, 3], "when passed as parameters to", Math.max, "not to be NaN")',
+      output:
+        'expect([1, 2, 3]).whenPassedAsParametersTo(Math.max).notToBeNaN()',
+      errors: [
+        {
+          message: 'Assertion should use camel case syntax',
+          column: 1,
+          line: 1,
+        },
+      ],
+    },
+    {
+      code: 'expect(0, "to be NaN")',
+      output: 'expect(0).toBeNaN()',
+      errors: [
+        {
+          message: 'Assertion should use camel case syntax',
+          column: 1,
+          line: 1,
+        },
+      ],
+    },
+    {
       code: 'expect.it("to be a number")',
       output: 'expect.toBeANumber()',
+      errors: [
+        {
+          message: 'Assertion should use camel case syntax',
+          column: 1,
+          line: 1,
+        },
+      ],
+    },
+    {
+      code: 'expect.it("to be NaN")',
+      output: 'expect.toBeNaN()',
       errors: [
         {
           message: 'Assertion should use camel case syntax',
