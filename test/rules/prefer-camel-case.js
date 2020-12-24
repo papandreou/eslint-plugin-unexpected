@@ -101,5 +101,28 @@ ruleTester.run('prefer-camel-case', rules['prefer-camel-case'], {
         },
       ],
     },
+    // Only useful when experimenting with the unexpected core test suite, consider leaving them out:
+    {
+      code: 'clonedExpect("foo", "to equal", "bar")',
+      output: 'clonedExpect("foo").toEqual("bar")',
+      errors: [
+        {
+          message: 'Assertion should use camel case syntax',
+          column: 1,
+          line: 1,
+        },
+      ],
+    },
+    {
+      code: 'parentExpect("foo", "to equal", "bar")',
+      output: 'parentExpect("foo").toEqual("bar")',
+      errors: [
+        {
+          message: 'Assertion should use camel case syntax',
+          column: 1,
+          line: 1,
+        },
+      ],
+    },
   ],
 });
