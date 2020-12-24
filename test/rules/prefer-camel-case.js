@@ -56,6 +56,17 @@ ruleTester.run('prefer-camel-case', rules['prefer-camel-case'], {
       ],
     },
     {
+      code: 'expect([1, 2, 3], "to be non-empty")',
+      output: 'expect([1, 2, 3]).toBeNonEmpty()',
+      errors: [
+        {
+          message: 'Assertion should use camel case syntax',
+          column: 1,
+          line: 1,
+        },
+      ],
+    },
+    {
       // Something that looks like a flag forwarding, but doesn't spell an assertion in core:
       code: 'expect(theThing, "to equal", "whatever that [might] be")',
       output: 'expect(theThing).toEqual("whatever that [might] be")',
